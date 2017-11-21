@@ -1,3 +1,3 @@
-# Guides
+# Guias
 
-Read these guides to get the best out of Crystal.
+Leia estes guias para conseguir tirar o melhor proveito da linguagem Crystal.
