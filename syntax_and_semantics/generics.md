@@ -1,6 +1,6 @@
 # Generics
 
-Generics allow you to parameterize a type based on other type. Consider a Box type:
+Generics allow to parameterize a type based on other type. Consider a Box type:
 
 ```crystal
 class MyBox(T)
@@ -21,7 +21,7 @@ string_box.value # => "hello" (String)
 another_box = MyBox(String).new(1) # Error, Int32 doesn't match String
 ```
 
-Generics are especially useful for implementing collection types. `Array`, `Hash`, `Set` are generic types, as is `Pointer`.
+Generics are specially useful for implementing collection types. `Array`, `Hash`, `Set` are generic type. `Pointer` too.
 
 More than one type argument is allowed:
 
@@ -30,12 +30,7 @@ class MyDictionary(K, V)
 end
 ```
 
-Any name can be used for type arguments:
-
-```crystal
-class MyDictionary(KeyType, ValueType)
-end
-```
+Only single letter names are allowed as names of type arguments.
 
 ## Type variables inference
 
@@ -49,7 +44,8 @@ MyBox.new("hello") # : MyBox(String)
 In the above code we didn't have to specify the type arguments of `MyBox`, the compiler inferred them following this process:
 
 * `MyBox.new(value)` delegates to `initialize(@value : T)`
-* `T` isn't bound to a type yet, so the compiler binds it to the type of the given argument
+* `T` doesn't exist, so it's used as a free var
+* Because `MyBox` is actually `MyBox(T)`, and `T` is both a free variable and a type argument, `T` becomes the type of the passed value
 
 In this way generic types are less tedious to work with.
 

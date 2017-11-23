@@ -105,22 +105,6 @@ rescue
 end
 ```
 
-## else
-
-An `else` clause is executed only if no exceptions were rescued:
-
-```crystal
-begin
-  something_dangerous
-rescue
-  # execute this if an exception is raised
-else
-  # execute this if an exception isn't raised
-end
-```
-
-An `else` clause can only be specified if at least one `rescue` clause is specified.
-
 ## ensure
 
 An `ensure` clause is executed at the end of a `begin ... end` or `begin ... rescue ... end` expression regardless of whether an exception was raised or not:
@@ -143,8 +127,6 @@ begin
   something_dangerous
 rescue
   # ...
-else
-  # ...
 ensure
   # this will always be executed
 end
@@ -152,9 +134,25 @@ end
 
 `ensure` clauses are usually used for clean up, freeing resources, etc.
 
+## else
+
+An `else` clause is executed only if no exceptions were rescued:
+
+```crystal
+begin
+  something_dangerous
+rescue
+  # execute this if an exception is raised
+else
+  # execute this if an exception isn't raised
+end
+```
+
+An `else` clause can only be specified if at least one `rescue` clause is specified.
+
 ## Short syntax form
 
-Exception handling has a short syntax form: assume a method or block definition is an implicit `begin ... end` expression, then specify `rescue`, `else`, and `ensure` clauses:
+Exception handling has a short syntax form: assume a method definition is an implicit `begin ... end` expression, then specify `rescue`, `ensure` and `else` clauses:
 
 ```crystal
 def some_method
@@ -173,7 +171,7 @@ def some_method
 end
 ```
 
-With `ensure`:
+An example with `ensure`:
 
 ```crystal
 def some_method
@@ -189,17 +187,6 @@ def some_method
   ensure
     # always execute this
   end
-end
-
-# Similarly, the shorthand also works with blocks:
-(1..10).each do |n|
-  # potentially dangerous operation
-rescue
-  #..
-else
-  #..
-ensure
-  #..
 end
 ```
 
@@ -251,4 +238,4 @@ array[4]  # raises because of IndexError
 array[4]? # returns nil because of index out of bounds
 ```
 
-The usual convention is to provide an alternative "question" method to signal that this variant of the method returns `nil` instead of raising. This lets the user choose whether she wants to deal with exceptions or with `nil`. Note, however, that this is not available for every method out there, as exceptions are still the preferred way because they don't pollute the code with error handling logic.
+The usual convention is to provide an alternative "question" method to signal that this variant of the method returns `nil` instead of raising. This lets the user choose whether she wants to deal with exceptions or with `nil`. Note, however, that this is not avaialble for every method out there, as exceptions are still the preferred way because they don't pollute the code with error handling logic.

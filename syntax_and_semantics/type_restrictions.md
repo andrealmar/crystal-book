@@ -189,10 +189,10 @@ foo(1, "x") # OK
 
 ## Free variables
 
-You can make a type restriction take the type of an argument, or part of the type of an argument, using `forall`:
+If you use a single uppercase letter as a type restriction, the identifier becomes a free variable:
 
 ```crystal
-def foo(x : T) forall T
+def foo(x : T)
   T
 end
 
@@ -205,7 +205,7 @@ That is, `T` becomes the type that was effectively used to instantiate the metho
 A free variable can be used to extract the type parameter of a generic type within a type restriction:
 
 ```crystal
-def foo(x : Array(T)) forall T
+def foo(x : Array(T))
   T
 end
 
@@ -216,7 +216,7 @@ foo([1, "a"]) #=> (Int32 | String)
 To create a method that accepts a type name, rather than an instance of a type, append `.class` to a free variable in the type restriction:
 
 ```crystal
-def foo(x : T.class) forall T
+def foo(x : T.class)
   Array(T)
 end
 
@@ -224,14 +224,7 @@ foo(Int32)  #=> Array(Int32)
 foo(String) #=> Array(String)
 ```
 
-Multiple free variables can be specified too, for matching types of multiple arguments:
+## Free variables in constructors
 
-```crystal
-def push(element : T, array : Array(T)) forall T
-  array << element
-end
-
-push(4, [1, 2, 3]) # OK
-push("oops", [1, 2, 3]) # Error
-```
+Free variables allow type inference to be used when creating generic types. Refer to the [Generics](generics.html) section.
 

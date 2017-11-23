@@ -1,7 +1,7 @@
-# Comments
+# Comentários
 
-Comments start with the `#` character. Only one-line comments are supported for now.
+Comentários começam com o caractere cerquilha (`#`). No momento somente comentários de uma linha são suportados.
 
 ```crystal
-# This is a comment
+# Isso é um comentário
 ```

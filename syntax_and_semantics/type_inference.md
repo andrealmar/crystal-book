@@ -1,6 +1,8 @@
 # Type inference
 
-Crystal's philosophy is to require as few type annotations as possible. However, some type annotations are required.
+**Note**: this applies to the next version of Crystal (0.16.0). Before this version global type inference takes the whole program and all uses into account.
+
+Crystal's philosophy is to require as few type annotations as possible. However, some type annotatinos are required.
 
 Consider a class definition like this:
 
@@ -15,11 +17,11 @@ end
 We can quickly see that `@age` is an integer, but we don't know what's the type of `@name`. The compiler could infer its type from all uses of the `Person` class. However, doing so has a few issues:
 
 * The type is not obvious for a human reading the code: she would also have to check all uses of `Person` to find this out.
-* Some compiler optimizations, like having to analyze a method just once, and incremental compilation, are nearly impossible to do.
+* Some compiler optimizations, like having to analyze a method just once, and incremental compilation, are near impossible to do.
 
 As a code base grows, these issues gain more relevance: understanding a project becomes harder, and compile times become unbearable.
 
-For this reason, Crystal needs to know, in an obvious way (as obvious as to a human), the types of instance and [class](class_variables.html) variables.
+For this reason, Crystal needs to know, in an obvious way (as obvious as to a human), the types of instance, [class](class_variables.html) and [global](global_variables.html) variables.
 
 There are several ways to let Crystal know this.
 
@@ -40,13 +42,13 @@ end
 
 ## Don't use an explicit type annotation
 
-If you omit an explicit type annotation the compiler will try to infer the type of instance and class variables using a bunch of syntactic rules.
+If you omit an explicit type annotation the compiler will try to infer the type of instance, class and global variables using a bunch of syntactic rules.
 
-For a given instance/class variable, when a rule can be applied and a type can be guessed, the type is added to a set. When no more rules can be applied, the inferred type will be the [union](union_types.html) of those types. Additionally, if the compiler infers that an instance variable isn't always initialized, it will also include the [Nil](literals/nil.html) type.
+For a given instance/class/global variable, when a rule can be applied and a type can be guessed, the type is added to a set. When no more rules can be applied, the inferred type will be the [union](union_types.html) of those types. Additionally, if the compiler infers that an instance variable isn't always initialized, it will also include the [Nil](literals/nil.html) type.
 
 The rules are many, but usually the first three are most used. There's no need to remember them all. If the compiler gives an error saying that the type of an instance variable can't be inferred you can always add an explicit type annotation.
 
-The following rules only mention instance variables, but they apply to class variables as well. They are:
+The following rules only mention instance variables, but they apply to class and global variables as well. They are:
 
 ### 1. Assigning a literal value
 
@@ -113,7 +115,7 @@ class Person
 end
 ```
 
-Note that the name of the method argument is not important; this works as well:
+Note that the name of the method argument is not important, this works as well:
 
 ```crystal
 class Person
@@ -132,7 +134,7 @@ class Person
 end
 ```
 
-Also note that the compiler doesn't check whether a method argument is reassigned a different value:
+Also note that the compiler doesn't check whether method argument is reassigned a different value:
 
 ```crystal
 class Person
@@ -152,7 +154,7 @@ In the following example, `@address` is inferred to be `Address`, because the cl
 ```crystal
 class Person
   def initialize
-    @address = Address.unknown
+    @address = Address.unkown
   end
 end
 
@@ -171,7 +173,7 @@ In fact, the above code doesn't need the return type annotation in `self.unknown
 ```crystal
 class Person
   def initialize
-    @address = Address.unknown
+    @address = Address.unkown
   end
 end
 
@@ -190,7 +192,7 @@ This extra rule is very convenient because it's very common to have "constructor
 
 ### 5. Assigning a variable that is a method argument with a default value
 
-In the following example, because the default value of `name` is a string literal, and it's later assigned to `@name`, `String` will be added to the set of inferred types.
+In the following example, because the default value of `name` is a string literal, and it's later assigned to `@name`, `String` will be added to the set of inferred typed.
 
 ```crystal
 class Person

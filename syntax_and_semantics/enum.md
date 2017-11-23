@@ -71,7 +71,7 @@ IOMode::None.value #=> 0
 IOMode::All.value  #=> 7
 ```
 
-Additionally, some `Enum` methods check the `@[Flags]` attribute. For example:
+Additionally, some `Enum` methods check the `@[Flags]` method. For example:
 
 ```crystal
 puts(Color::Red)                    # prints "Red"
@@ -113,7 +113,7 @@ Color::Red.red?  #=> true
 Color::Blue.red? #=> false
 ```
 
-Class variables are allowed, but instance variables are not.
+Class variables are allowed, but instance variables not.
 
 ## Usage
 
@@ -148,6 +148,6 @@ end
 paint :red
 ```
 
-However, if the programmer makes a typo, say `:reed`, the error will only be caught at runtime, while attempting to use `Color::Reed` will result in a compile-time error.
+However, if the programmer makes a typo, say `:reed`, the error will only be caught at runtime, but writing `Color::Reed` will result in a compile-time error.
 
 The recommended thing to do is to use enums whenever possible, only use symbols for the internal implementation of an API, and avoid symbols for public APIs. But you are free to do what you want.

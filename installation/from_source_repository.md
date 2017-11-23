@@ -1,23 +1,19 @@
-# From sources
+# Do Código-fonte
 
-If you want to contribute then you might want to install Crystal from sources.
+Se você quer colaborar com o projeto, entao você pode querer instalar o Crystal a partir do código-fonte. Mas o Crystal é escrito no próprio Crystal! Então primeiramente você precisa usar um dos métodos descritos anteriormente para ter um compilador rodando.
 
-1. [Install the latest Crystal release](https://crystal-lang.org/docs/installation). To compile Crystal, you need Crystal :).
+Você também precisará do LLVM 3.5 ou 3.6 no path. Se você está usando um Mac e a fórmula do Homebrew, isso é configurado automaticamente se você instalar o Crystal adicionando a flag `--with-llvm`.
 
-2. Make sure a supported LLVM version is present in the path. Currently, Crystal supports LLVM 3.8, 3.9 and 4.0. When possible, use the latest one. If you are using Mac and the Homebrew formula, this will be automatically configured for you if you install Crystal adding `--with-llvm` flag.
-
-3. Make sure to install [all the required libraries](https://github.com/crystal-lang/crystal/wiki/All-required-libraries). You might also want to read the [contributing guide](https://github.com/crystal-lang/crystal/blob/master/CONTRIBUTING.md).
-
-4. Clone the repository:
+Então clone o repositório:
 
 ```
 git clone https://github.com/crystal-lang/crystal.git
 ```
 
-5. Run `make` to build your own version of the compiler
-6. Run `make spec` to ensure all specs pass, and you've installed everything correctly.
-7. Use `bin/crystal` to run your crystal files
+e você está pronto para começar a programar.
 
-If you would like more information about the new `bin/crystal`, check out the [using the compiler](https://crystal-lang.org/docs/using_the_compiler/) documentation.
+Para fazer o build de sua própria versão do compilador, rode `make`. O novo compilador estará localizado em `.build/crystal`.
 
-Note: The actual binary is built in to `.build/crystal`, but the `bin/crystal` wrapper script is what you should use to run crystal.
+Assegure-se de instalar [todas as bibliotecas necessárias](https://github.com/crystal-lang/crystal/wiki/All-required-libraries). Você também pode querer ler o [guia de colaboração](https://github.com/crystal-lang/crystal/blob/master/Contributing.md).
+
+Dentro do repositório você também encontrará um script de wrapper em `bin/crystal`. Esse script executará o compilador instalado globalmente ou aquele que você acabou de compilar (se houver algum).

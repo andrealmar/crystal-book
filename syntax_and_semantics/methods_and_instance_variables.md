@@ -7,25 +7,13 @@ class Person
   def initialize(@name : String)
     @age = 0
   end
-  
-  def age
-    @age
-  end
 end
 ```
 
-Right now, we can't do much with a person aside from create it with a name. Its age will always be zero. So lets add a method that makes a person become older:
+Right now, we can't do much with a person: create it with a name, ask for its name and for its age, which will always be zero. So lets add a method that makes a person become older:
 
 ```crystal
 class Person
-  def initialize(@name : String)
-    @age = 0
-  end
-  
-  def age
-    @age
-  end
-  
   def become_older
     @age += 1
   end
@@ -43,27 +31,6 @@ peter.age #=> 0
 ```
 
 Method names begin with a lowercase letter and, as a convention, only use lowercase letters, underscores and numbers.
-
-## Getters and setters
-
-The Crystal [Standard Library](https://crystal-lang.org/api) provides macros which simplify the definition of getter and setter methods:
-
-```crystal
-class Person
-  property age
-  getter name : String
-
-  def initialize(@name)
-    @age = 0
-  end
-end
-
-john = Person.new "John"
-john.age = 32
-john.age #=> 32
-```
-
-For more information on getter and setter macros, see the standard library documentation for [Object#getter](https://crystal-lang.org/api/latest/Object.html#getter%28%2Anames%29-macro), [Object#setter](https://crystal-lang.org/api/latest/Object.html#setter%28%2Anames%29-macro), and [Object#property](https://crystal-lang.org/api/latest/Object.html#property%28%2Anames%29-macro).
 
 As a side note, we can define `become_older` inside the original `Person` definition, or in a separate definition: Crystal combines all definitions into a single class. The following works just fine:
 
@@ -124,7 +91,7 @@ person.become_older
 person.age #=> 3
 ```
 
-Without arguments or parentheses, `previous_def` receives the same arguments as the method's arguments. Otherwise, it receives the arguments you pass to it.
+Without arguments nor parenthesis, `previous_def` receives the same arguments as the method's arguments. Otherwise, it receives the arguments you pass to it.
 
 ## Catch-all initialization
 

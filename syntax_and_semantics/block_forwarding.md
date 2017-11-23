@@ -37,7 +37,7 @@ proc = capture { puts "Hello" }
 twice &proc
 ```
 
-The above is simply rewritten to:
+The above is simpy rewritten to:
 
 ```crystal
 proc = capture { puts "Hello" }

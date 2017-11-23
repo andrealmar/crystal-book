@@ -27,16 +27,16 @@ lib C
 end
 ```
 
-Recursive structs work just like you expect them to:
+To declare recursive structs you can forward-declare them:
 
 ```crystal
 lib C
-  struct LinkedListNode
-    prev, _next : LinkedListNode*
+  # This is a forward declaration
+  struct Node
   end
-  
-  struct LinkedList
-    head : LinkedListNode*
+
+  struct Node
+    node : Node*
   end
 end
 ```

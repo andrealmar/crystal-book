@@ -59,25 +59,27 @@ v1 = Vector2.new(1, 2)
 
 ## Binary operators
 
-* `+` – addition
-* `-` – subtraction
-* `*` – multiplication
-* `/` – division
-* `%` – modulo
-* `&` – bitwise and
-* `|` – bitwise or
-* `^` – bitwise xor
-* `**` – exponentiation
-* `<<` – shift left, append
-* `>>` – shift right
-* `==` – equals
-* `!=` – not equals
-* `<` – less
-* `<=` – less or equal
-* `>` – greater
-* `>=` – greater or equal
-* `<=>` – comparison
-* `===` – [case equality](case.html)
+```crystal
++   # addition
+-   # subtraction
+*   # multiplication
+/   # division
+%   # modulo
+&   # bitwise and
+|   # bitwise or
+^   # bitwise xor
+**  # exponentiation
+<<  # shift left, append
+>>  # shift right
+==  # equals
+!=  # not equals
+<   # less
+<=  # less or equal
+>   # greater
+>=  # greater or equal
+<=> # comparison
+=== # case equality
+```
 
 ## Indexing
 
